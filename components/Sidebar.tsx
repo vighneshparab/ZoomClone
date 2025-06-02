@@ -2,6 +2,7 @@
 
 import { sidebarLinks } from "@/constants";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
@@ -28,7 +29,7 @@ const Sidebar = () => {
                 }
               )}
             >
-              <img
+              <Image
                 src={link.imgUrl}
                 alt={link.label}
                 className={cn("w-6 h-6 transition-transform duration-300", {
