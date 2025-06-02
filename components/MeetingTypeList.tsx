@@ -62,19 +62,20 @@ const MeetingTypeList = () => {
       setCallDetails(call);
       toast.success("Meeting created successfully!");
 
-      // For instant meetings (no description provided by user), redirect immediately
       if (!values.description.trim()) {
         router.push(`/meeting/${call.id}`);
       }
-      // For scheduled meetings (with description), the modal will show the link
-    } catch (error: any) {
+    } catch (error) {
+      let errorMessage = "Something went wrong while creating the meeting.";
+      if (error instanceof Error) {
+        errorMessage = error.message;
+      }
       console.error("Error creating meeting:", error);
-      toast.error("Something went wrong while creating the meeting.");
+      toast.error(errorMessage);
     }
   };
 
   const handleScheduleMeeting = () => {
-    // Reset callDetails when starting to schedule a new meeting
     setCallDetails(undefined);
     setValues({
       dateTime: new Date(),
@@ -90,7 +91,6 @@ const MeetingTypeList = () => {
       return;
     }
 
-    // Extract meeting ID from the link or use the link directly
     const meetingId = values.link.split("/").pop();
     if (meetingId) {
       router.push(`/meeting/${meetingId}`);
