@@ -62,7 +62,7 @@ const MobileNav = () => {
                           }
                         )}
                       >
-                        <img
+                        <Image
                           src={link.imgUrl}
                           alt={link.label}
                           className={cn(
